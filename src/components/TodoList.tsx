@@ -35,7 +35,6 @@ export const TodoList: React.FC<Props> = ({ filteredTodos }) => {
           </button>
 
           <div data-cy="TodoLoader" className="modal overlay">
-            {/* overlay will cover the todo while it is being deleted or updated */}
             <div className="modal-background has-background-white-ter" />
             <div className="loader" />
           </div>
