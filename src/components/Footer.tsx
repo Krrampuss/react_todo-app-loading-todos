@@ -1,11 +1,6 @@
 import cn from 'classnames';
 import { Todo } from '../types/Todo';
-
-enum FilterName {
-  'ALL',
-  'COMPLETED',
-  'ACTIVE',
-}
+import { FilterName } from '../types/enumFilterName';
 
 type Props = {
   activeTodos: number;
@@ -27,38 +22,17 @@ export const Footer: React.FC<Props> = ({
       </span>
 
       <nav className="filter" data-cy="Filter">
-        <a
-          href="#/"
-          className={cn('filter__link', {
-            selected: filteredBy === FilterName.ALL,
-          })}
-          data-cy="FilterLinkAll"
-          onClick={() => setFilteredBy(FilterName.ALL)}
-        >
-          All
-        </a>
-
-        <a
-          href="#/active"
-          className={cn('filter__link', {
-            selected: filteredBy === FilterName.ACTIVE,
-          })}
-          data-cy="FilterLinkActive"
-          onClick={() => setFilteredBy(FilterName.ACTIVE)}
-        >
-          Active
-        </a>
-
-        <a
-          href="#/completed"
-          className={cn('filter__link', {
-            selected: filteredBy === FilterName.COMPLETED,
-          })}
-          data-cy="FilterLinkCompleted"
-          onClick={() => setFilteredBy(FilterName.COMPLETED)}
-        >
-          Completed
-        </a>
+        {[FilterName.ALL, FilterName.ACTIVE, FilterName.COMPLETED].map(link => (
+          <a
+            key={link}
+            onClick={() => setFilteredBy(link)}
+            href="#/"
+            className={cn('filter__link', { selected: filteredBy === link })}
+            data-cy={`FilterLink${link}`}
+          >
+            {link}
+          </a>
+        ))}
       </nav>
 
       <button

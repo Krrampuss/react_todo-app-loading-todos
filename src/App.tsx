@@ -8,12 +8,7 @@ import { Header } from './components/Header';
 import { TodoList } from './components/TodoList';
 import { Footer } from './components/Footer';
 import { ErrorMes } from './components/ErrorMes';
-
-enum FilterName {
-  'ALL',
-  'COMPLETED',
-  'ACTIVE',
-}
+import { FilterName } from './types/enumFilterName';
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
